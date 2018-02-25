@@ -40,3 +40,26 @@ void onLightSensor(String sensorId, int value){
   }
 }
 
+void handleRequest(Request req, Response res){
+  switch(req.path[1]){
+    case "light":
+      switch(req.method){
+        case "GET":
+          res = getLightStatus(req.path);
+          break;
+        case "PUT":
+          res = setLightStatus(req.path, req.content);
+          break;
+      }
+    case "group":
+      switch(req.method){
+        case "GET":
+          res = getGroupStatus(req.path);
+          break;
+        case "PUT":
+          res = setGroupStatus(req.path, req.content);
+          break;
+      }
+  }
+}
+
